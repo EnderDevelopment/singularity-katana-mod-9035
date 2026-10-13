@@ -1,0 +1,52 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '6.0.0'
+    id 'maven-publish'
+}
+
+group 'com.s66290444'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://files.minecraftforge.net/maven'
+    }
+}
+
+ext.archivesName = "domainawakeningmod-${version}.jar"
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+        }
+        server {
+            workingDirectory project.file('run')
+        }
+    }
+}
+
+dependencies {
+    implementation fg.deobf('net.minecraftforge:forge:1.20.1-47.1.0')
+    implementation fg.deobf('net.minecraft:client:1.20.1')
+    implementation fg.deobf('net.minecraft:server:1.20.1')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcVersion', project.minecraft.version
+    from(sourceSets.main.resources.srcDirs) {
+        include 'META-INF/mods.toml'
+        expand 'version':project.version, 'mcVersion':project.minecraft.version
+    }
+}
+
+jar {
+    from {
+        configurations.compileClasspath.collect {
+            it.isDirectory() ? project.zipTree(it) : it
+        }
+    }
+}

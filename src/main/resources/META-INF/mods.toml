@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All rights reserved"
+
+[[mods]]
+modId="domainawakeningmod"
+version="${file.jarVersion}"
+displayName="Domain Awakening Mod"
+logoFile="assets/domainawakeningmod/icon.png"
+credits=""
+authors=""
+description='''
+A Minecraft mod featuring the Singularity Katana and Singularity Slash ability.
+'''
+
+[[dependencies.domainawakeningmod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.domainawakeningmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.20.2)"
+    ordering="NONE"
+    side="BOTH"
